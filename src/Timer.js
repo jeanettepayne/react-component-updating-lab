@@ -11,12 +11,22 @@ class Timer extends Component {
   }
 
   //Your code here
+  componentDidUpdate() {
+    this.timer.current.style.color = '#60D7E2'
+  }
 
   componentDidMount() {
     this.interval = setInterval(
       this.clockTick,
       this.props.updateInterval * 1000
     );
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.time === nextState.time) {
+      return false
+    }
+    return true
   }
 
   componentWillUnmount() {
